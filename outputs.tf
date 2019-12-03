@@ -7,9 +7,9 @@ output "cert" {
 }
 
 output "ca_key" {
-   value = tls_private_key.ca.private_key_pem
+   value = var.ca_key  != "generated" ? var.ca_key  : tls_private_key.ca.private_key_pem
 }
 
 output "ca_cert" {
-   value = tls_self_signed_cert.ca.cert_pem
+   value = var.ca_cert != "generated" ? var.ca_cert  : tls_self_signed_cert.ca.cert_pem
 }

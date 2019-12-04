@@ -1,5 +1,5 @@
 module "init-ca" {
-    source 		= "github.com/ishxyz/tf_cert_generator"
+    source 		= "github.com/ishxyz/terraform-tls-certificates-generator"
     cn			= "CA"
     org			= "aws-k8s-lab-init-CA"
     ou			= "aws-k8s-lab"
@@ -9,7 +9,7 @@ module "init-ca" {
 }
 
 module "admin" {
-    source 		= "github.com/ishxyz/tf_cert_generator"
+    source 		= "github.com/ishxyz/terraform-tls-certificates-generator"
     cn			= "admin"
     org			= "system:masters"
     ou			= "aws-k8s-lab"
@@ -21,7 +21,7 @@ module "admin" {
 }
 
 module "kube-controller-manager" {
-    source 		= "github.com/ishxyz/tf_cert_generator"
+    source 		= "github.com/ishxyz/terraform-tls-certificates-generator"
     cn			= "system:kube-controller-manager"
     org			= "system:kube-controller-manager"
     ou			= "aws-k8s-lab"
@@ -33,7 +33,7 @@ module "kube-controller-manager" {
 }
 
 module "kube-proxy" {
-    source 		= "github.com/ishxyz/tf_cert_generator"
+    source 		= "github.com/ishxyz/terraform-tls-certificates-generator"
     cn			= "system:kube-proxy"
     org			= "system:kube-proxy"
     ou			= "aws-k8s-lab"
@@ -45,7 +45,7 @@ module "kube-proxy" {
 }
 
 module "kube-scheduler" {
-    source 		= "github.com/ishxyz/tf_cert_generator"
+    source 		= "github.com/ishxyz/terraform-tls-certificates-generator"
     cn			= "system:kube-scheduler"
     org			= "system:kube-scheduler"
     ou			= "aws-k8s-lab"
@@ -57,7 +57,7 @@ module "kube-scheduler" {
 }
 
 module "service-accounts" {
-    source 		= "github.com/ishxyz/tf_cert_generator"
+    source 		= "github.com/ishxyz/terraform-tls-certificates-generator"
     cn			= "service-accounts"
     org			= "Kubernetes"
     ou			= "aws-k8s-lab"
@@ -67,4 +67,3 @@ module "service-accounts" {
     location		= "London"
     validity_period	= 8760
 }
-

@@ -1,6 +1,6 @@
 # tf_cert_generator
 
-A Terraform module to generate RSA certificates with a self provisioned CA
+A Terraform module to generate TLS RSA certificates with a self provisioned CA
 
 This terraform modules uses the tls_provider resources defined in -> https://www.terraform.io/docs/providers/tls/index.html
 

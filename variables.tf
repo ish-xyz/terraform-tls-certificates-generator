@@ -50,3 +50,9 @@ variable "ca_cert" {
     description = "If default the module will create a new CA"
     default = "generated"
 }
+
+variable "dns_names" {
+    description = "List of ip, hostnames the certificate is for."
+    type = list
+    default = []
+}

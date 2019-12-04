@@ -32,6 +32,7 @@ resource "tls_private_key" "service" {
 resource "tls_cert_request" "service" {
   key_algorithm   = "RSA"
   private_key_pem = tls_private_key.service.private_key_pem
+  dns_names       = var.dns_names
 
   subject {
     organization        = var.org
@@ -39,7 +40,6 @@ resource "tls_cert_request" "service" {
     organizational_unit = var.ou
     country             = var.country
     locality            = var.location
-
   }
 }
 

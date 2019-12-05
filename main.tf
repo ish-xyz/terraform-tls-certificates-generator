@@ -18,10 +18,9 @@ resource "tls_self_signed_cert" "ca" {
   validity_period_hours = var.validity_period
 
   allowed_uses = [
-    "signing",
-    "client_auth",
-    "key_encipherment",
-    "server_auth",
+    "digital_signature",
+    "cert_signing",
+    "crl_signing",
   ]
 }
 
@@ -33,6 +32,7 @@ resource "tls_cert_request" "service" {
   key_algorithm   = "RSA"
   private_key_pem = tls_private_key.service.private_key_pem
   dns_names       = var.dns_names
+  ip_addresses    = var.ip_addresses 
 
   subject {
     organization        = var.org
@@ -52,20 +52,22 @@ resource "tls_locally_signed_cert" "local" {
   validity_period_hours = var.validity_period
 
   allowed_uses = [
-    "signing",
-    "client_auth",
+    "digital_signature",
     "key_encipherment",
     "server_auth",
+    "client_auth",
   ]
 }
 
 resource "local_file" "key-file" {
+  count           = var.key_filename == "attribute_only" ? 0 : 1
 	content         = tls_private_key.service.private_key_pem
 	filename        = var.key_filename
 	file_permission = "0600"
 }
 
 resource "local_file" "cert-file" {
+  count           = var.cert_filename == "attribute_only" ? 0 : 1
 	content         = tls_locally_signed_cert.local.cert_pem
 	filename        = var.cert_filename
 	file_permission = "0644"

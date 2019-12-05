@@ -1,11 +1,13 @@
 variable "key_filename" {
     description = "Absolute or relative path of the filename that will be generated"
     type = string
+    default = "attribute_only"
 }
 
 variable "cert_filename" {
     description = "Absolute or relative path of the filename that will be generated"
     type = string
+    default = "attribute_only"
 }
 
 variable "validity_period" {
@@ -55,4 +57,10 @@ variable "dns_names" {
     description = "List of ip, hostnames the certificate is for."
     type = list
     default = []
+}
+
+variable "ip_addresses" {
+   description = "List of ip_addresses for which the certificate will be valid (e.g. foo.example.com)."
+   type        = list
+   default     = []
 }
